@@ -1,82 +1,16 @@
-# Backend Challenge 
+# Backend Ssr Challenge
 
-Este es el challenge de backend de Tecnoandina SPA.
+El desafío consiste en desarrollar 3 microservicios(servicio-1, 2 y 3) que cumplan lo requerido en el *README* de cada carpeta.
+Para ello debe desarrollar el código de cada servicio y confeccionar el Dockerfile correspondiente a cada servicio que puede o no ser el mismo dependiendo como lo haga.
 
-# Tarea
-Queremos una API REST que permita crear, editar, eliminar y listar brokers mqtt. Estos brokers tienen topicos y targets, por lo que tambien necesitamos endpoints para crear, editar, eliminar y listar topicos y targets.
-Actualmente tenemos esta configuracion en un json, y queremos que todo este en una base de datos sql.
+La forma de entrega es subir la resolucion en un repositorio publico y luego envíar el link con la resolución.
 
-```json
-{
-  "brokers": [
-    {
-      "id": "broker1_id",
-      "hostname": "mosquitto",
-      "port": 1883,
-      "username": "mqttuser",
-      "password": "mqttpass",
-      "transport": "tcp",
-      "targets": [
-        {
-            "url": "localhost:5000/target1"
-        },
-        {
-            "url": "localhost:3000/target2"
-        }
-      ],
-      "topics": [
-        {
-          "topic": "test1/#",
-          "qos": 0
-        }
-      ]
-    },
-    {
-      "id": "broker2_id",
-      "hostname": "mosquitto",
-      "port": 1883,
-      "username": "mqttuser",
-      "password": "mqttpass",
-      "transport": "tcp",
-      "targets": [
-        {
-            "url": "localhost:5000/target3"
-        },
-        {
-            "url": "localhost:3000/target4"
-        }
-      ],
-      "topics": [
-        {
-          "topic": "test2/#",
-          "qos": 0
-        }
-      ]
-    }
-  ]
-}
-```
+Para facilitar un poco las cosas ya hay un archivo docker-compose con todos los servicios necesarios para poder realizar el desafío.
 
-El endpoint de creacion y edicion de los brokers, debe probar la conexion y ver que sea posible antes de guardarla en la base de datos. En caso de no ser positiva, debe retornar un error.
+El plazo es de una semana desde recibido el link a este repositorio y no hay restricciones en cuanto a lenguajes o tecnologías, aunque se recomienda Python o Typescript para la resolución.
 
-# Stack
+Puntos extras si se quiere agregar un front sencillo que utilice el servicio-3.
 
-En general estariamos buscando que el stack sea el siguiente:
+Diagrama
 
-- Python (FastAPI + SQLModel)
-- MySQL
-- Mosquitto
-- Docker + docker-compose
-
-En caso de que sientas mas comodo con otro stack, puedes usarlo. Pero debes explicar por que lo usaste. Pero igual debes usar MySQL, docker y mosquitto.
-Parte de la entrega es un docker-compose que levante todo lo necesario, es decir la API, la base de datos y mosquitto.
-
-# Extras
-
-Puedes agregar todo lo que quieras de buenas practicas, documentacion, tests, etc.
-Si quieres agregar un frontend, puedes hacerlo. Pero no es necesario.
-
-# Entrega
-
-Tienes 5 días para resolverlo contando desde el dia que recibiste el mail con este link. Debes resolverlo y subirlo a un repositorio publico de github/gitlab/etc. Luego debes enviar el link del repositorio a la persona que te envio este link.
-Cualquier duda o consulta que tengas la puedes hacer por mail.
+![Esquema de resolución](./challenge.png "Esquema de resolución")
