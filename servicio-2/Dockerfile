@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8080
 
 # Define the command to run the app
-# CMD ["python", "service.py"]
+CMD ["python", "service.py"]
