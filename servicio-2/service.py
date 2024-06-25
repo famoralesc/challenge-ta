@@ -2,7 +2,7 @@ import random
 import json
 from paho.mqtt import client as mqtt_client
 import constants as const
-from repository import influx as repo
+from repository import influx
 
 client_id = f"python-mqtt-{random.randint(0, 1000)}"
 
@@ -21,18 +21,21 @@ def connect_mqtt() -> mqtt_client.Client:
 
 
 def subscribe(client: mqtt_client.Client) -> None:
-    influx_client = repo.initialize()
-
+    influx_client = influx.get_client()
+    
     def on_message(client, userdata, msg):
         payload = msg.payload.decode()
         data = json.loads(payload)
-
-        repo.write_to_influx(
-            client=influx_client,
-            version=data["version"],
-            time=data["time"],
-            value=data["value"],
-        )
+       
+        if influx_client.health().status == "pass":
+            influx.write(
+                client=influx_client,
+                version=data["version"],
+                time=data["time"],
+                value=data["value"],
+            )
+        else:
+            print("There is a problem with influx's health connection")
 
     client.subscribe(topic=const.TOPIC)
     client.on_message = on_message

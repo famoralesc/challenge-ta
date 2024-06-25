@@ -1,11 +1,12 @@
+from datetime import datetime
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 from constants import *
 
 
-def initialize() -> InfluxDBClient:
+def get_client() -> InfluxDBClient:
     client = InfluxDBClient(
-        url=INFLUX_URL, username=INFLUX_USER, password=INFLUX_PASSWORD
+        url=INFLUX_URL, token=INFLUX_TOKEN, org=INFLUX_ORG
     )
     return client
 
@@ -16,11 +17,12 @@ def get_point(version: int, time: str, value: int) -> Point:
         .tag("version", version)
         .field("time", time)
         .field("value", value)
+        .time(datetime.now())
     )
     return point
 
 
-def write_to_influx(
+def write(
     client: InfluxDBClient, version: int, time: str, value: int
 ) -> None:
     point = get_point(version, time, value)
