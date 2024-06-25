@@ -5,6 +5,6 @@ PORT: int = 1883
 MAX_PUBLICATION_TIME: int = 5
 MESSAGE_TEMPLATE = """{{
 "time": "{time}",
-"value": {value},"
-"version: {version}"
+"value": {value},
+"version": {version}
 }}"""
