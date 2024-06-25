@@ -31,9 +31,9 @@ def publish(client: mqtt_client.Client) -> None:
 
         msg = (
             "{\n"
-            f"time: {date_time_str}\n,"
-            f"value: {random.randint(0,1000)}\n,"
-            f"version: {random.randint(0,2)}\n"
+            f"\"time\": \"{date_time_str}\"\n,"
+            f"\"value\": {random.randint(0,1000)}\n,"
+            f"\"version\": {random.randint(0,2)}\n"
             "}"
         )
 
