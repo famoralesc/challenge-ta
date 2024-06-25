@@ -5,10 +5,7 @@ from constants import *
 
 def initialize() -> InfluxDBClient:
     client = InfluxDBClient(
-        url=INFLUX_URL,
-        username=INFLUX_USER,
-        password=INFLUX_PASSWORD,
-        auth_basic=True
+        url=INFLUX_URL, username=INFLUX_USER, password=INFLUX_PASSWORD, auth_basic=True
     )
     return client
 
