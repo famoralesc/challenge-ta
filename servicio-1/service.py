@@ -23,18 +23,16 @@ def connect_mqtt() -> mqtt_client.Client:
 
 
 def publish(client: mqtt_client.Client) -> None:
-    times = 0
+    times: int = 0
     while True:
         times += 1
-        now = datetime.now()
-        date_time_str = now.strftime("%Y-%m-%d %H:%M:%S")
+        now: datetime = datetime.now()
+        date_time_str: str = now.strftime("%Y-%m-%d %H:%M:%S")
 
-        msg = (
-            "{\n"
-            f"\"time\": \"{date_time_str}\"\n,"
-            f"\"value\": {random.randint(0,1000)}\n,"
-            f"\"version\": {random.randint(0,2)}\n"
-            "}"
+        msg = const.MESSAGE_TEMPLATE.format(
+            time=date_time_str,
+            value=random.randint(0, 1000),
+            version=random.randint(0, 2),
         )
 
         result: mqtt_client.MQTTMessageInfo = client.publish(
