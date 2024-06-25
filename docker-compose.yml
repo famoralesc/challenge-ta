@@ -13,6 +13,7 @@ services:
     ports:
       - 8082:8080
     depends_on:
+      - influx
       - mosquitto
 
   servicio-3:

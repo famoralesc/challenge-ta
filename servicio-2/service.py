@@ -1,5 +1,10 @@
+import random
+import json
 from paho.mqtt import client as mqtt_client
 import constants as const
+from repository import influx as repo
+
+client_id = f"python-mqtt-{random.randint(0, 1000)}"
 
 
 def connect_mqtt() -> mqtt_client.Client:
@@ -9,15 +14,25 @@ def connect_mqtt() -> mqtt_client.Client:
         else:
             print("Failed to connect, return code %d\n", rc)
 
-    client = mqtt_client.Client()
+    client = mqtt_client.Client(client_id=client_id)
     client.on_connect = on_connect
     client.connect(const.BROKER, const.PORT)
     return client
 
 
 def subscribe(client: mqtt_client.Client) -> None:
+    influx_client = repo.initialize()
+
     def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+        payload = msg.payload.decode()
+        data = json.loads(payload)
+
+        repo.write_to_influx(
+            client=influx_client,
+            version=data["version"],
+            time=data["time"],
+            value=data["value"],
+        )
 
     client.subscribe(topic=const.TOPIC)
     client.on_message = on_message
