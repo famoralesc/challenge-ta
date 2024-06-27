@@ -18,6 +18,9 @@ services:
 
   servicio-3:
     build: ./servicio-3/
+    command: /usr/src/app/entrypoint.sh
+    volumes:
+      - .:/servicio-3:/usr/src/app
     ports:
       - 8080:8080
     depends_on:

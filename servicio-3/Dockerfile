@@ -22,8 +22,3 @@ ENV PYTHONUNBUFFERED=1
 
 # Expose the port the app runs on
 EXPOSE 8080
-
-WORKDIR challenge
-
-# Define the command to run the app
-CMD ["python", "manage.py",  "runserver", "0.0.0.0:8080"]
