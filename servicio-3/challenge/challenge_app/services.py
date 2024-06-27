@@ -45,10 +45,14 @@ def get_data_to_persist(version: int, data: list[dict]) -> list[dict]:
     response: list[dict]= []
     
     for record in data:
+        try:
+            alert_type = get_alert_type(version, record['value'])
+        except ValueError:
+            continue
         response.append(
             {
                 "datetime": record['time'],
-                "type": get_alert_type(version, record['value']),
+                "type": alert_type,
                 "version": version,
                 "value": record["value"]
             }
