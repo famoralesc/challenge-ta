@@ -1,5 +1,16 @@
 # Servicio-3
 
+## Como correr el Servicio 3
+
+Las APIs estan disponibles según lo descrito en la siguiente sección. 
+Sin embargo es posible visualizar los eventos y ejecutar las 3 APIs (process / search / send) desde el front desarrollado para este fin.
+
+La url del sitio es: http://localhost:8080/
+
+![Demo](./demo.png "Demo del front")
+
+## Descripción del problema
+
 Este servicio expone una API con 3 endpoints los cuales harán diferentes
 cosas de acuerdo a lo siguiente.
 

@@ -1,5 +1,11 @@
 # Backend Ssr Challenge
 
+### NOTA IMPORTANTE
+
+Para correr el servicio-2 y 3 correctamente, debes setear en `docker-compose.yml` la variable de entorno **INFLUX_TOKEN**, la cual debes obtener desde influx CLI en http://localhost:8086/
+
+## Desafio
+
 El desafío consiste en desarrollar 3 microservicios(servicio-1, 2 y 3) que cumplan lo requerido en el *README* de cada carpeta.
 Para ello debe desarrollar el código de cada servicio y confeccionar el Dockerfile correspondiente a cada servicio que puede o no ser el mismo dependiendo como lo haga.
 
