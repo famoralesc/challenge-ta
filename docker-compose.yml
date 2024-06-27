@@ -13,7 +13,7 @@ services:
     ports:
       - 8082:8080
     environment:
-      - INFLUX_TOKEN=D9iLZ6LQrj0qIPv5ORV3Mn69vcsCHWJaUi3iQPPLiTxIeMqk2XqmZqqkov2WTSAMaYoR1sBJoTTFhM6Adfq5Eg==
+      - INFLUX_TOKEN=set-your-token-here
     depends_on:
       - influx
       - mosquitto
@@ -26,7 +26,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - INFLUX_TOKEN=D9iLZ6LQrj0qIPv5ORV3Mn69vcsCHWJaUi3iQPPLiTxIeMqk2XqmZqqkov2WTSAMaYoR1sBJoTTFhM6Adfq5Eg==
+      - INFLUX_TOKEN=set-your-token-here
     depends_on:
       - influx
       - mysql
