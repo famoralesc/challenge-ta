@@ -22,11 +22,11 @@ def connect_mqtt() -> mqtt_client.Client:
 
 def subscribe(client: mqtt_client.Client) -> None:
     influx_client = influx.get_client()
-    
+
     def on_message(client, userdata, msg):
         payload = msg.payload.decode()
         data = json.loads(payload)
-       
+
         if influx_client.health().status == "pass":
             influx.write(
                 client=influx_client,

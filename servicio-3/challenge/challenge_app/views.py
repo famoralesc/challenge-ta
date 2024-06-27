@@ -5,11 +5,12 @@ from challenge_app.constants import VERSION, TIME_SEARCH
 from challenge_app import services
 import json
 
-BASE_HTML_ROUTE = 'alerts'
+BASE_HTML_ROUTE = "alerts"
+
 
 # HOME
 def index(request):
-    html_route = 'index.html'
+    html_route = "index.html"
     return render(request, f"{BASE_HTML_ROUTE}/{html_route}", {})
 
 
@@ -63,7 +64,7 @@ def search(request) -> JsonResponse:
     except Exception as e:
         return JsonResponse(
             {"status": f"Error: {{error}}".format(error=str(e))}, status=500
-        ) 
+        )
 
     return JsonResponse(alerts, status=200, safe=False)
 
@@ -89,5 +90,3 @@ def send(request):
             {"status": f"Error: {{error}}".format(error=str(e))}, status=500
         )
     return JsonResponse({"status": "ok"}, status=200)
-
-    

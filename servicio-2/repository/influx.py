@@ -5,9 +5,7 @@ from constants import *
 
 
 def get_client() -> InfluxDBClient:
-    client = InfluxDBClient(
-        url=INFLUX_URL, token=INFLUX_TOKEN, org=INFLUX_ORG
-    )
+    client = InfluxDBClient(url=INFLUX_URL, token=INFLUX_TOKEN, org=INFLUX_ORG)
     return client
 
 
@@ -22,9 +20,7 @@ def get_point(version: int, time: str, value: int) -> Point:
     return point
 
 
-def write(
-    client: InfluxDBClient, version: int, time: str, value: int
-) -> None:
+def write(client: InfluxDBClient, version: int, time: str, value: int) -> None:
     point = get_point(version, time, value)
     write_api = client.write_api(write_options=SYNCHRONOUS)
     write_api.write(bucket=INFLUX_BUCKET, org=INFLUX_ORG, record=point)
