@@ -25,7 +25,9 @@ def get_alert_type(version: int, value: int) -> str:
             case v if v > 800:
                 return ALTA
             case _:
-                raise ValueError(f"No se puede determinar el type a partir del value {value}")
+                raise ValueError(
+                    f"No se puede determinar el type a partir del value {value}"
+                )
     if version == 2:
         match value:
             case v if v < 200:
@@ -35,26 +37,28 @@ def get_alert_type(version: int, value: int) -> str:
             case v if v < 800 and v > 500:
                 return ALTA
             case _:
-                raise ValueError(f"No se puede determinar el type a partir del value {value}")
+                raise ValueError(
+                    f"No se puede determinar el type a partir del value {value}"
+                )
 
 
 def get_data_to_persist(version: int, data: list[dict]) -> list[dict]:
     if not data:
         return []
-    
-    response: list[dict]= []
-    
+
+    response: list[dict] = []
+
     for record in data:
         try:
-            alert_type = get_alert_type(version, record['value'])
+            alert_type = get_alert_type(version, record["value"])
         except ValueError:
             continue
         response.append(
             {
-                "datetime": record['time'],
+                "datetime": record["time"],
                 "type": alert_type,
                 "version": version,
-                "value": record["value"]
+                "value": record["value"],
             }
         )
     return response
@@ -69,18 +73,43 @@ def process(version: int, time_search: str) -> None:
         time_search = f"-{time_search}"
 
     # GET DATA FROM INFLUX
-    influx_data = get_data_from_influx(version, time_search)    
-    
+    influx_data = get_data_from_influx(version, time_search)
+
     # INSERT DATA TO MYSQL
     data = get_data_to_persist(version, influx_data)
 
     for record in data:
         try:
             alert: Alerts = Alerts.objects.create(
-                datetime = record['datetime'],
-                type = record['type'],
-                value = record['value'],
-                version = record['version']
-            )    
+                datetime=record["datetime"],
+                type=record["type"],
+                value=record["value"],
+                version=record["version"],
+            )
         except IntegrityError as e:
             pass
+
+
+def get_alerts_by_criteria(
+    version: int, type_parameter: str | None, sended: bool | None
+) -> list[dict]:
+    alerts = Alerts.objects.filter(version=version)
+    if type_parameter:
+        alerts = alerts.filter(type=type_parameter)
+    if sended:
+        alerts = alerts.filter(sended=sended)
+
+    response: list[dict] = []
+
+    for alert in alerts:
+        response.append(
+            {
+                "datetime": alert.datetime.strftime("%Y-%m-%d %H:%M:%S"),
+                "value": alert.value,
+                "version": alert.version,
+                "type": alert.type,
+                "sended": alert.sended,
+            }
+        )
+
+    return response

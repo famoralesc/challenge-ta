@@ -23,4 +23,5 @@ urlpatterns = [
     path("", views.index, name="home"),
     # API
     path("challenge/process", views.process, name="process"),
+    path("challenge/search", views.search, name="search"),
 ]
