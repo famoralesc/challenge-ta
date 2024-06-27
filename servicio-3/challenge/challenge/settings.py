@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "challenge_app",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",

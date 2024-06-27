@@ -4,7 +4,7 @@ INFLUX_ORG: str = "tecnoandina"
 INFLUX_BUCKET: str = "system"
 INFLUX_MEASUREMENT: str = "dispositivos"
 INFLUX_TOKEN: str = (
-    "FUSSVXb2_qCnc3zBZglzoFn4QO_KxAto3R7mjCGN_jhDk-lhpo6kEkg0K-2e3vMlYO4hWa7r7Ou789HwoiR5vQ=="
+    "3NhVyI4sWSUspJpg3JIvSZz8Ytvjs9EX92tPcXMgN-0QV2D0jFVQ0lvhFOUhBdIJs8v_sp_fB87TdQDb_KrXMg=="
 )
 
 
