@@ -2,6 +2,8 @@
 
 set -e
 
+./wait-for-it.sh challenges-ta-mysql-1:3306 -t 10
+
 cd "./challenge"
 
 python manage.py makemigrations
