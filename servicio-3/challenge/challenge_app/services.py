@@ -100,7 +100,6 @@ def get_alerts_by_criteria(
         alerts = alerts.filter(sended=sended)
 
     response: list[dict] = []
-    print(alerts.query)
     for alert in alerts:
         response.append(
             {
