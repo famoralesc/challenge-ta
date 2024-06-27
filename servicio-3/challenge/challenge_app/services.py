@@ -1,5 +1,7 @@
 from challenge_app.repository import influx as influx_repo
 from challenge_app.constants import BAJA, MEDIA, ALTA
+from challenge_app.models import Alerts
+from django.db import IntegrityError
 
 
 def get_data_from_influx(version: int, time_search: str) -> list[dict]:
@@ -43,7 +45,15 @@ def get_data_to_persist(version: int, data: list[dict]) -> list[dict]:
     response: list[dict]= []
     
     for record in data:
-        alert_type = get_alert_type(version, record['value'])
+        response.append(
+            {
+                "datetime": record['time'],
+                "type": get_alert_type(version, record['value']),
+                "version": version,
+                "value": record["value"]
+            }
+        )
+    return response
 
 
 def process(version: int, time_search: str) -> None:
@@ -59,4 +69,14 @@ def process(version: int, time_search: str) -> None:
     
     # INSERT DATA TO MYSQL
     data = get_data_to_persist(version, influx_data)
-    
+
+    for record in data:
+        try:
+            alert: Alerts = Alerts.objects.create(
+                datetime = record['datetime'],
+                type = record['type'],
+                value = record['value'],
+                version = record['version']
+            )    
+        except IntegrityError as e:
+            pass
