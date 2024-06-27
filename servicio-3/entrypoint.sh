@@ -2,7 +2,7 @@
 
 set -e
 
-./wait-for-it.sh challenges-ta-mysql-1:3306 -t 10
+./wait-for-it.sh challenge-ta-mysql-1:3306 -t 10
 
 cd "./challenge"
 

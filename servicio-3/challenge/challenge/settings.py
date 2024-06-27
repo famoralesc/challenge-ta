@@ -80,7 +80,7 @@ DATABASES = {
         "NAME": "tecnoandina",
         "USER": "admin",
         "PASSWORD": "admin",
-        "HOST": "challenges-ta-mysql-1",
+        "HOST": "challenge-ta-mysql-1",
         "PORT": "3306",
         "OPTIONS": {
             "charset": "utf8",
