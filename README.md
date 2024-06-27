@@ -2,7 +2,21 @@
 
 ### NOTA IMPORTANTE
 
-Para correr el servicio-2 y 3 correctamente, debes setear en `docker-compose.yml` la variable de entorno **INFLUX_TOKEN**, la cual debes obtener desde influx CLI en http://localhost:8086/
+Para correr el servicio-2 y 3 correctamente, debes setear en `docker-compose.yml` (`servicio-2` y `servicio-3`) la variable de entorno **INFLUX_TOKEN**, la cual debes obtener desde influx CLI en http://localhost:8086/ como se muestra a continuación:
+
+```
+  servicio-2:
+    ...
+    environment:
+      - INFLUX_TOKEN=set-your-own-token-here
+    ...
+
+  servicio-3:
+    ...
+    environment:
+      - INFLUX_TOKEN=set-your-own-token-here
+    ...
+```
 
 ## Desafio
 
