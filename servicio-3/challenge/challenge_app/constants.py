@@ -1,11 +1,11 @@
+import os
+
 # INFLUX CONSTANTS
 INFLUX_URL: str = "http://challenges-ta-influx-1:8086"
 INFLUX_ORG: str = "tecnoandina"
 INFLUX_BUCKET: str = "system"
 INFLUX_MEASUREMENT: str = "dispositivos"
-INFLUX_TOKEN: str = (
-    "3NhVyI4sWSUspJpg3JIvSZz8Ytvjs9EX92tPcXMgN-0QV2D0jFVQ0lvhFOUhBdIJs8v_sp_fB87TdQDb_KrXMg=="
-)
+INFLUX_TOKEN: str = os.getenv("INFLUX_TOKEN", "default_token")
 
 
 # API CONSTANTS

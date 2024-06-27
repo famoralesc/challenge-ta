@@ -12,6 +12,8 @@ services:
     build: ./servicio-2/
     ports:
       - 8082:8080
+    environment:
+      - INFLUX_TOKEN=3NhVyI4sWSUspJpg3JIvSZz8Ytvjs9EX92tPcXMgN-0QV2D0jFVQ0lvhFOUhBdIJs8v_sp_fB87TdQDb_KrXMg==
     depends_on:
       - influx
       - mosquitto
@@ -23,6 +25,8 @@ services:
       - .:/servicio-3:/usr/src/app
     ports:
       - 8080:8080
+    environment:
+      - INFLUX_TOKEN=3NhVyI4sWSUspJpg3JIvSZz8Ytvjs9EX92tPcXMgN-0QV2D0jFVQ0lvhFOUhBdIJs8v_sp_fB87TdQDb_KrXMg==
     depends_on:
       - influx
       - mysql
