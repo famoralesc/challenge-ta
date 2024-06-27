@@ -19,7 +19,7 @@ services:
   servicio-3:
     build: ./servicio-3/
     ports:
-      - 8083:8080
+      - 8080:8080
     depends_on:
       - influx
       - mysql
