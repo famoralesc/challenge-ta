@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Alertas{% endblock %}
+
+{% block content %}
+<h1 class="mt-4">Gestión de alertas</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Alertas
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Datetime</th>
+                    <th>Value</th>
+                    <th>Version</th>
+                    <th>Type</th>
+                    <th>Sended</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -5,10 +5,12 @@ from challenge_app.constants import VERSION, TIME_SEARCH
 from challenge_app import services
 import json
 
+BASE_HTML_ROUTE = 'alerts'
 
 # HOME
 def index(request):
-    pass
+    html_route = 'index.html'
+    return render(request, f"{BASE_HTML_ROUTE}/{html_route}", {})
 
 
 # APIS
