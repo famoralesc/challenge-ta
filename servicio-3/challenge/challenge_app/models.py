@@ -7,6 +7,7 @@ type_enum = (
     (ALTA, ALTA),
 )
 
+
 class Alerts(models.Model):
     id_alerta = models.AutoField(primary_key=True)
     datetime = models.DateTimeField(unique=True)
@@ -16,4 +17,3 @@ class Alerts(models.Model):
     sended = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    

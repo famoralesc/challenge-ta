@@ -29,7 +29,7 @@ def get(client: InfluxDBClient, query: str) -> list[dict]:
                     "start": record.get_start(),
                     "stop": record.get_stop(),
                     "value": record.get_value(),
-                    "time": record.get_time()
+                    "time": record.get_time(),
                 }
             )
     return result
