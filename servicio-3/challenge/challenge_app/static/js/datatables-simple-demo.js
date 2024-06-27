@@ -119,5 +119,36 @@ window.addEventListener('DOMContentLoaded', event => {
             console.error('Error:', error);
         });
     })
+
+    // on btnSend clicked
+    const btnSend = document.getElementById("btnSend");
+    btnSend.addEventListener('click', () =>{
+        const typeInput = document.getElementById("typeForSend")
+    
+        let data = { 
+            version: versionInput.value,
+            type: typeInput.value
+        };
+        
+        fetch('/challenge/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status != 'ok'){
+                alert(data.error);
+                return
+            }
+            alert("Procesado ok");
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    })
     
 });
