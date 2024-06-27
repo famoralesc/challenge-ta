@@ -74,9 +74,16 @@ WSGI_APPLICATION = "challenge.wsgi.application"
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tecnoandina',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'challenges-ta-mysql-1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8', 
+        },
     }
 }
 
