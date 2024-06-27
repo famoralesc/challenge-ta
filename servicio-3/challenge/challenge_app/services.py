@@ -96,11 +96,11 @@ def get_alerts_by_criteria(
     alerts = Alerts.objects.filter(version=version)
     if type_parameter:
         alerts = alerts.filter(type=type_parameter)
-    if sended:
+    if sended is not None:
         alerts = alerts.filter(sended=sended)
 
     response: list[dict] = []
-
+    print(alerts.query)
     for alert in alerts:
         response.append(
             {
@@ -113,3 +113,7 @@ def get_alerts_by_criteria(
         )
 
     return response
+
+
+def send_alerts(version: int, type_parameter: str):
+    Alerts.objects.filter(version=version, type=type_parameter).update(sended=True)

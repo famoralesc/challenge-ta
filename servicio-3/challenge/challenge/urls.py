@@ -24,4 +24,5 @@ urlpatterns = [
     # API
     path("challenge/process", views.process, name="process"),
     path("challenge/search", views.search, name="search"),
+    path("challenge/send", views.send, name="send"),
 ]

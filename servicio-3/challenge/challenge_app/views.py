@@ -57,7 +57,7 @@ def search(request) -> JsonResponse:
     sended: bool | None = parameters.get("sended")
 
     try:
-        alerts = services.get_alerts_by_criteria(version, type_parameter, sended)
+        alerts = services.get_alerts_by_critria(version, type_parameter, sended)
     except Exception as e:
         return JsonResponse(
             {"status": f"Error: {{error}}".format(error=str(e))}, status=500
@@ -66,5 +66,26 @@ def search(request) -> JsonResponse:
     return JsonResponse(alerts, status=200, safe=False)
 
 
+@csrf_exempt
 def send(request):
-    pass
+    if request.method != "POST":
+        return JsonResponse({"status": "Invalid HTTP method"}, status=405)
+
+    parameters: dict = json.loads(request.body)
+
+    if VERSION not in parameters or "type" not in parameters:
+        return JsonResponse(
+            {"status": "No se pudo procesar los párametros"}, status=422
+        )
+    version: int = parameters["version"]
+    type_parameter: str = parameters.get("type")
+
+    try:
+        services.send_alerts(version, type_parameter)
+    except Exception as e:
+        return JsonResponse(
+            {"status": f"Error: {{error}}".format(error=str(e))}, status=500
+        )
+    return JsonResponse({"status": "ok"}, status=200)
+
+    
