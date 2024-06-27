@@ -7,11 +7,61 @@
 
 <div class="card mb-4">
     <div class="card-header">
+        Filtros
+    </div>
+    <div class="card-body">
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <select aria-label="Version" class="datatable-selector" name="versionForSearch" id="versionForSearch" >
+                    <option value="1">Version 1</option>
+                    <option value="2">Version 2</option>
+                </select>
+                <select aria-label="Nivel de Alerta" class="datatable-selector" name="type" id="type" >
+                    <option value="">-- Nivel de Alerta --</option>
+                    <option value="BAJA">Baja</option>
+                    <option value="MEDIA">Media</option>
+                    <option value="ALTA">Alta</option>
+                </select>
+                <select aria-label="Estado envio" class="datatable-selector" name="sended" id="sended" >
+                    <option value="">-- Estado envio --</option>
+                    <option value="true">Enviado</option>
+                    <option value="false">Por enviar</option>
+                </select>
+                <button aria-label="Search" class="btn btn-primary" id="btnSearch" type="button"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <div class="datatable-dropdown">
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
+        Acciones
+    </div>
+    <div class="card-body">
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <select aria-label="Version" class="datatable-selector" name="versionForProcess" id="versionForProcess" >
+                    <option value="1">Version 1</option>
+                    <option value="2">Version 2</option>
+                </select>
+                <input class="form-control" id="timeInput" type="text" placeholder="Time...">
+                <button aria-label="Process" class="btn btn-primary" id="btnProcess" type="button"><i class="fas fa-book-open"></i> Procesar</button>
+            </div>
+        </form>
+        <div class="datatable-dropdown">
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header">
         <i class="fas fa-table me-1"></i>
         Alertas
     </div>
     <div class="card-body">
-        <table id="datatablesSimple">
+        <table id="datatablesAlerts">
             <thead>
                 <tr>
                     <th>Datetime</th>
