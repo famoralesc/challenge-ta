@@ -77,7 +77,7 @@ def process(version: int, time_search: str) -> None:
 
     # INSERT DATA TO MYSQL
     data = get_data_to_persist(version, influx_data)
-
+    print("EVENTS TO REGISTER :::", data)
     for record in data:
         try:
             alert: Alerts = Alerts.objects.create(
@@ -86,6 +86,7 @@ def process(version: int, time_search: str) -> None:
                 value=record["value"],
                 version=record["version"],
             )
+            print("EVENT REGISTERED ::: ", alert)
         except IntegrityError as e:
             pass
 

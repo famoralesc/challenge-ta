@@ -25,14 +25,14 @@ def process(request) -> JsonResponse:
         return JsonResponse(
             {"status": "No se pudo procesar los párametros"}, status=422
         )
-    version: int = parameters[VERSION]
+    version: int = int(parameters[VERSION])
     if version == 0:
         return JsonResponse(
             {"status": "No se pudo procesar los párametros"}, status=422
         )
 
     try:
-        services.process(parameters[VERSION], parameters[TIME_SEARCH])
+        services.process(version, parameters[TIME_SEARCH])
     except ValueError as e:
         return JsonResponse({"status": str(e)}, status=422)
     except Exception as e:
@@ -54,7 +54,7 @@ def search(request) -> JsonResponse:
             {"status": "No se pudo procesar los párametros"}, status=422
         )
 
-    version: int = parameters["version"]
+    version: int = int(parameters[VERSION])
     type_parameter: str | None = parameters.get("type")
     sended: bool | None = parameters.get("sended")
 
@@ -79,7 +79,7 @@ def send(request):
         return JsonResponse(
             {"status": "No se pudo procesar los párametros"}, status=422
         )
-    version: int = parameters["version"]
+    version: int = int(parameters[VERSION])
     type_parameter: str = parameters.get("type")
 
     try:

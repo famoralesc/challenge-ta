@@ -4,7 +4,6 @@ window.addEventListener('DOMContentLoaded', event => {
     const versionInput = document.getElementById('versionForSearch');
     
     const datatablesSimple = document.getElementById('datatablesAlerts');
-    console.log("Loading data")
     const dataTable = new simpleDatatables.DataTable(datatablesSimple);
     fetch('/challenge/search', {
         method: 'POST',
@@ -29,7 +28,6 @@ window.addEventListener('DOMContentLoaded', event => {
                 ]
             )
         });
-        console.log('Success:', finalData);
         dataTable.insert(finalData);
     })
     .catch((error) => {
@@ -87,6 +85,7 @@ window.addEventListener('DOMContentLoaded', event => {
     // on btnProcess clicked
     const btnProcess = document.getElementById("btnProcess");
     btnProcess.addEventListener('click', () =>{
+        const versionInput = document.getElementById('versionForProcess');
         const timeInput = document.getElementById("timeInput")
     
         let data = { version: versionInput.value };
@@ -107,10 +106,9 @@ window.addEventListener('DOMContentLoaded', event => {
             body: JSON.stringify(data),
         })
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.status != 'ok'){
-                alert(data.error);
+        .then(response => {
+            if (response.status != 'ok'){
+                alert(response.status);
                 return
             }
             alert("Procesado ok");
@@ -123,6 +121,7 @@ window.addEventListener('DOMContentLoaded', event => {
     // on btnSend clicked
     const btnSend = document.getElementById("btnSend");
     btnSend.addEventListener('click', () =>{
+        const versionInput = document.getElementById('versionForSend');
         const typeInput = document.getElementById("typeForSend")
     
         let data = { 
@@ -141,7 +140,7 @@ window.addEventListener('DOMContentLoaded', event => {
         .then(data => {
             console.log(data);
             if (data.status != 'ok'){
-                alert(data.error);
+                alert(response.status);
                 return
             }
             alert("Procesado ok");
