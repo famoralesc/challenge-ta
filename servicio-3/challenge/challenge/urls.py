@@ -21,7 +21,6 @@ from challenge_app import views
 urlpatterns = [
     # WEB
     path("", views.index, name="home"),
-
     # API
     path("challenge/process", views.process, name="process"),
 ]
