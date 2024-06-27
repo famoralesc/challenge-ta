@@ -57,7 +57,7 @@ def search(request) -> JsonResponse:
     sended: bool | None = parameters.get("sended")
 
     try:
-        alerts = services.get_alerts_by_critria(version, type_parameter, sended)
+        alerts = services.get_alerts_by_criteria(version, type_parameter, sended)
     except Exception as e:
         return JsonResponse(
             {"status": f"Error: {{error}}".format(error=str(e))}, status=500
